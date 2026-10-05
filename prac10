@@ -1,0 +1,155 @@
+PRACTICAL 10 — JSON
+
+1. CREATING JSON
+
+Create:
+10a.html
+
+CODE:
+
+<html>
+<head>
+<title>Creating JSON</title>
+</head>
+<body>
+<script type="text/javascript">
+var data = {
+    "name":"Aanchal",
+    "age":20,
+    "dept":"IT"
+}
+
+document.writeln(JSON.stringify(data)+"<br/>");
+document.writeln(JSON.stringify(data,["name","age","dept"])+"<br/>");
+document.writeln(JSON.stringify(data,["name","age","dept"],5));
+</script>
+</body>
+</html>
+
+
+OUTPUT:
+
+Aanchal
+
+{"name":"Aanchal","age":20,"dept":"IT"}
+
+{
+     "name": "Aanchal",
+     "age": 20,
+     "dept": "IT"
+}
+
+
+2. PARSING JSON
+
+Create:
+
+10b.html
+
+CODE:
+
+<!DOCTYPE html>
+<html>
+<body>
+<script type="text/javascript">
+var data='{"name":"Aanchal","age":20,"dept":"IT"}';
+var jsonObj=JSON.parse(data,function(name,value){
+    return value;
+});
+document.writeln(jsonObj.name);
+for(key in jsonObj)
+{
+    document.writeln("<br/>"+key+" : "+jsonObj[key]);
+}
+
+var jsonObj=JSON.parse(data,function(name,value){
+
+    if(name=="sem")
+    {
+        return undefined;
+    }
+    else
+    {
+        return value;
+    }
+
+});
+
+for(key in jsonObj)
+{
+    document.writeln("<br/>"+key+" : "+jsonObj[key]);
+}
+
+</script>
+</body>
+</html>
+
+
+OUTPUT:
+Aanchal
+
+name : Aanchal
+age : 20
+dept : IT
+
+name : Aanchal
+age : 20
+dept : IT
+
+
+3. PARSING JSON USING JSON.parse()
+
+Create:
+10c.html
+
+CODE:
+
+<html>
+<body>
+<script type="text/javascript">
+var data='{"name":"Aanchal","age":20,"dept":"IT"}';
+var obj=JSON.parse(data);
+for(var key in obj)
+{
+    document.writeln("<br/>"+key+" :"+obj[key]);
+}
+</script>
+</body>
+</html>
+
+
+OUTPUT:
+
+name : Aanchal
+age : 20
+dept : IT
+
+
+HOW TO RUN:
+
+1. Create a folder:
+
+Practical10
+
+2. Create:
+
+10a.html
+10b.html
+10c.html
+
+3. Paste the respective code into each file.
+
+4. Save all files.
+
+5. Open the HTML files in Chrome.
+
+6. Check the JSON output.
+
+
+GITHUB STRUCTURE:
+
+Practical-10/
+│
+├── 10a.html
+├── 10b.html
+└── 10c.html
